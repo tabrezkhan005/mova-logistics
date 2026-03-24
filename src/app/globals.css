@@ -77,21 +77,29 @@ p {
 
 .container-main {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px; /* Massive freedom for content */
   margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 @media (min-width: 768px) {
+  .container-main {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
   .container-main {
     padding-left: 4rem;
     padding-right: 4rem;
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1600px) {
   .container-main {
+    max-width: 1800px; /* Extreme freedom on giant monitors */
     padding-left: 6rem;
     padding-right: 6rem;
   }

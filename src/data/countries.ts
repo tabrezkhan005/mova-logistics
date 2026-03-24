@@ -2,8 +2,7 @@ export interface ExportRegion {
   id: string;
   name: string;
   countries: string[];
-  x: number;
-  y: number;
+  coordinates: [number, number]; // [longitude, latitude]
   color: string;
 }
 
@@ -12,40 +11,35 @@ export const exportRegions: ExportRegion[] = [
     id: "north-america",
     name: "North America",
     countries: ["United States", "Canada", "Mexico"],
-    x: 22,
-    y: 35,
+    coordinates: [-100, 40],
     color: "#D4AF37",
   },
   {
     id: "europe",
     name: "Europe",
     countries: ["United Kingdom", "Germany", "France", "Netherlands", "Spain"],
-    x: 48,
-    y: 28,
+    coordinates: [10, 50],
     color: "#1F7A6E",
   },
   {
     id: "middle-east",
     name: "Middle East",
     countries: ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Oman"],
-    x: 57,
-    y: 40,
+    coordinates: [45, 25],
     color: "#D4AF37",
   },
   {
     id: "asia",
     name: "Asia",
     countries: ["Singapore", "Malaysia", "Japan", "South Korea", "China"],
-    x: 72,
-    y: 38,
+    coordinates: [105, 30],
     color: "#1F7A6E",
   },
   {
     id: "africa",
     name: "Africa",
     countries: ["South Africa", "Kenya", "Nigeria", "Egypt"],
-    x: 50,
-    y: 55,
+    coordinates: [20, 0],
     color: "#D4AF37",
   },
 ];

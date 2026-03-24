@@ -89,14 +89,14 @@ export function QualityProcess() {
                   <div className={`lg:grid lg:grid-cols-2 lg:gap-16 items-center ${i > 0 ? "lg:mt-16" : ""}`}>
                     {/* Content */}
                     <div className={`${isEven ? "lg:text-right lg:order-1" : "lg:order-2"}`}>
-                      <div className={`flex items-center gap-4 mb-4 ${isEven ? "lg:justify-end" : ""}`}>
+                      <div className="mb-4 relative">
                         <span
-                          className="text-5xl font-bold text-[#0A0A0A]/5"
+                          className={`absolute -top-6 ${isEven ? "-right-4" : "-left-4"} text-7xl font-bold text-[#0A0A0A]/[0.03] select-none pointer-events-none z-0`}
                           style={{ fontFamily: "var(--font-heading)" }}
                         >
                           {step.step}
                         </span>
-                        <h3 className="text-[#0A0A0A] font-semibold text-xl">
+                        <h3 className="text-[#0A0A0A] font-semibold text-2xl relative z-10">
                           {step.title}
                         </h3>
                       </div>

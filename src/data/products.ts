@@ -20,7 +20,7 @@ export const products: Product[] = [
     description:
       "Premium Alleppey and Salem turmeric with high curcumin content, sourced from the finest farms across South India. Our turmeric meets the highest international quality standards.",
     origin: "Kerala & Tamil Nadu, India",
-    image: "/images/spices/turmeric.jpg",
+    image: "https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000", "HACCP", "Spice Board of India"],
     color: "#E8A317",
@@ -33,7 +33,7 @@ export const products: Product[] = [
     description:
       "Hand-selected Gujarat and Rajasthan cumin seeds known for their bold aroma and rich flavor profile. Processed in state-of-the-art facilities with strict quality checks.",
     origin: "Gujarat & Rajasthan, India",
-    image: "/images/spices/cumin.jpg",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000", "HACCP"],
     color: "#8B7355",
@@ -46,7 +46,7 @@ export const products: Product[] = [
     description:
       'Malabar and Tellicherry black pepper — the "King of Spices" — sourced directly from Kerala plantations. Renowned for its pungency and superior flavor.',
     origin: "Kerala, India",
-    image: "/images/spices/black-pepper.jpg",
+    image: "https://images.unsplash.com/photo-1509358271058-acd26cc7d761?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Vacuum Packed"],
     certifications: ["FSSAI", "ISO 22000", "HACCP", "Organic Certified"],
     color: "#2C2C2C",
@@ -59,7 +59,7 @@ export const products: Product[] = [
     description:
       'Premium green cardamom, the "Queen of Spices," hand-picked from the Cardamom Hills. Known for its intense aroma and superior oil content.',
     origin: "Kerala & Karnataka, India",
-    image: "/images/spices/cardamom.jpg",
+    image: "https://images.unsplash.com/photo-1615484478170-eb97a1f59275?q=80&w=800",
     exportPackaging: ["5kg Cartons", "25kg PP Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000", "HACCP"],
     color: "#4A7C59",
@@ -72,7 +72,7 @@ export const products: Product[] = [
     description:
       "Lucknow and Gujarat fennel seeds with sweet anise flavor. Our vacuum-cleaned and gravity-sorted fennel meets the highest export standards.",
     origin: "Gujarat & Uttar Pradesh, India",
-    image: "/images/spices/fennel.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1672828789396-856c9aeca240?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000"],
     color: "#9CB770",
@@ -85,7 +85,7 @@ export const products: Product[] = [
     description:
       "Guntur, Byadgi, and Kashmiri red chillies available in whole and powder form. Carefully selected for color, heat levels, and SHU consistency.",
     origin: "Andhra Pradesh & Karnataka, India",
-    image: "/images/spices/red-chilli.jpg",
+    image: "https://images.unsplash.com/photo-1588126838890-e2af654924a1?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000", "HACCP"],
     color: "#CC2936",
@@ -98,7 +98,7 @@ export const products: Product[] = [
     description:
       "Natural, hulled, and roasted sesame seeds in white and black varieties. Machine-cleaned with 99.95% purity for export-grade quality.",
     origin: "Rajasthan & Gujarat, India",
-    image: "/images/spices/sesame.jpg",
+    image: "https://images.unsplash.com/photo-1593345472859-f9c3eb7e35b7?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Paper Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000", "Kosher", "Halal"],
     color: "#F5E6C4",
@@ -111,7 +111,7 @@ export const products: Product[] = [
     description:
       "Eagle and Scooter variety coriander seeds, double-cleaned and steam-sterilized. Known for their citrusy aroma and consistent quality.",
     origin: "Rajasthan & Madhya Pradesh, India",
-    image: "/images/spices/coriander.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1675806655184-b0fabb741b6d?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000", "HACCP"],
     color: "#A0826D",
@@ -124,7 +124,7 @@ export const products: Product[] = [
     description:
       "Yellow and brown mustard seeds, machine-cleaned to export standards. Sourced from premium growing regions with consistent oil content.",
     origin: "Rajasthan & Madhya Pradesh, India",
-    image: "/images/spices/mustard.jpg",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Bulk"],
     certifications: ["FSSAI", "ISO 22000"],
     color: "#D4A520",
@@ -137,7 +137,7 @@ export const products: Product[] = [
     description:
       "Premium quality fenugreek seeds, meticulously sorted and cleaned. Rich in flavor and widely used in culinary and pharmaceutical applications globally.",
     origin: "Rajasthan & Gujarat, India",
-    image: "/images/spices/fenugreek.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1672828789396-856c9aeca240?q=80&w=800",
     exportPackaging: ["25kg PP Bags", "50kg Jute Bags", "Custom Packaging"],
     certifications: ["FSSAI", "ISO 22000"],
     color: "#B8860B",

@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "Mova Logistics | Premium Indian Spice Exporters",
   description:
     "Mova Logistics exports premium Indian spices including turmeric, cumin, black pepper, and cardamom to global markets with strict quality control.",
+  icons: {
+    icon: "/mova_logistics_favicon.png",
+    apple: "/mova_logistics_favicon.png",
+  },
   keywords: [
     "Indian spice exporters",
     "premium spices",
@@ -40,9 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
+        suppressHydrationWarning
       >
         <Navbar />
         <main>{children}</main>

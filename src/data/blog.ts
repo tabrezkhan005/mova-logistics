@@ -20,7 +20,7 @@ export const blogPosts: BlogPost[] = [
     category: "Market Insights",
     date: "2025-12-15",
     readTime: "5 min read",
-    image: "/images/blog/turmeric-market.jpg",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800",
     author: "Mova Research Team",
   },
   {
@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     category: "Quality",
     date: "2025-11-28",
     readTime: "7 min read",
-    image: "/images/blog/quality-control.jpg",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800",
     author: "Mova Quality Team",
   },
   {
@@ -44,7 +44,7 @@ export const blogPosts: BlogPost[] = [
     category: "Sustainability",
     date: "2025-11-10",
     readTime: "4 min read",
-    image: "/images/blog/sustainable-farming.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1672828789396-856c9aeca240?q=80&w=800",
     author: "Mova Sustainability Team",
   },
 ];

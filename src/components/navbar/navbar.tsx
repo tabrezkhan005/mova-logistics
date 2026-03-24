@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone, Mail } from "lucide-react";
 import { cn } from "@/src/lib/utils";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -31,51 +32,74 @@ export function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -100 }}
+        initial={{ y: -50 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled
-            ? "bg-[#0A0A0A]/90 backdrop-blur-xl border-b border-white/5 py-3"
-            : "bg-transparent py-5"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          isScrolled ? "bg-[#0A0A0A]/95 backdrop-blur-md shadow-lg" : "bg-transparent"
         )}
       >
-        <div className="container-main flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#b8961f] flex items-center justify-center">
-              <span className="text-[#0A0A0A] font-bold text-lg font-[var(--font-heading)]">M</span>
+        {/* Top Contact Bar - seamlessly integrated and shrinks on scroll */}
+        <div 
+          className={cn(
+            "hidden lg:flex w-full items-center justify-between transition-all duration-500 overflow-hidden",
+            isScrolled ? "h-0 opacity-0 border-transparent" : "h-[24px] opacity-100"
+          )}
+        >
+          <div className="container-main flex items-center justify-between text-[11px] text-white/60 font-medium tracking-wide">
+            <div className="flex items-center gap-6">
+              <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-[#D4AF37] transition-colors">
+                <Phone size={12} className="text-[#D4AF37]" strokeWidth={2.5} />
+                +91 98765 43210
+              </a>
+              <span className="w-px h-2.5 bg-white/20"></span>
+              <a href="mailto:exports@movalogistics.com" className="flex items-center gap-2 hover:text-[#D4AF37] transition-colors">
+                <Mail size={12} className="text-[#D4AF37]" strokeWidth={2.5} />
+                exports@movalogistics.com
+              </a>
             </div>
-            <div className="flex flex-col">
-              <span className="text-white font-bold text-lg tracking-wide leading-none">
-                MOVA
-              </span>
-              <span className="text-[#D4AF37] text-[10px] tracking-[0.3em] uppercase leading-none mt-0.5">
-                Logistics
-              </span>
+            <div className="flex items-center gap-4 text-white/40 text-[9px] uppercase tracking-[0.2em] font-semibold">
+               ISO 22000 & HACCP Certified
             </div>
-          </Link>
+          </div>
+        </div>
+
+        {/* Main Navbar */}
+        <div className={cn("container-main flex items-center justify-between transition-all duration-300", isScrolled ? "py-1" : "py-2")}>
+          {/* Logo (Flex 1 to balance CTA) */}
+          <div className="flex-1 flex justify-start">
+            <Link href="/" className="flex items-center group">
+              <Image 
+                src="/images/logo/mova_logistics.png" 
+                alt="MOVA Logistics Logo" 
+                width={120}
+                height={36}
+                className="object-contain"
+                priority
+              />
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative px-4 py-2 text-sm text-white/70 hover:text-white transition-colors duration-300 group"
+                className="relative py-2 text-[15px] font-medium tracking-[0.05em] text-white/70 hover:text-white transition-colors duration-300 group"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
 
-          {/* CTA + Mobile Toggle */}
-          <div className="flex items-center gap-4">
+          {/* CTA + Mobile Toggle (Flex 1 to balance Logo) */}
+          <div className="flex-1 flex items-center justify-end gap-6">
             <Link
               href="/contact"
-              className="hidden md:inline-flex btn-primary !py-2.5 !px-5 !text-xs"
+              className="hidden md:inline-flex btn-primary !py-2 !px-6 !text-[13px] !font-bold tracking-widest"
             >
               Get Quote
             </Link>

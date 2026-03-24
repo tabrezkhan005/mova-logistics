@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FadeUp } from "@/src/components/animations/fade-up";
+import Image from "next/image";
 
 const quickLinks = [
   { href: "/about", label: "About Us" },
@@ -30,18 +31,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Company Description */}
           <FadeUp className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#b8961f] flex items-center justify-center">
-                <span className="text-[#0A0A0A] font-bold text-lg">M</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white font-bold text-lg tracking-wide leading-none">
-                  MOVA
-                </span>
-                <span className="text-[#D4AF37] text-[10px] tracking-[0.3em] uppercase leading-none mt-0.5">
-                  Logistics
-                </span>
-              </div>
+            <div className="flex items-center mb-6">
+              <Image 
+                src="/images/logo/mova_logistics.png" 
+                alt="MOVA Logistics Logo" 
+                width={160}
+                height={56}
+                className="object-contain"
+              />
             </div>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
               A trusted Indian spice export company delivering premium quality

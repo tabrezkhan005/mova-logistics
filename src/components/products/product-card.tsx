@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Product } from "@/src/data/products";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
@@ -18,21 +19,19 @@ export function ProductCard({ product, index }: ProductCardProps) {
       className="premium-card group cursor-pointer h-full flex flex-col"
     >
       {/* Image Area */}
-      <div className="relative h-60 overflow-hidden bg-gradient-to-br from-[#0F2F2A] to-[#1a4a42]">
+      <div className="relative h-60 overflow-hidden bg-[#0F2F2A]">
+        <Image 
+          src={product.image} 
+          alt={product.name} 
+          fill 
+          className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 mix-blend-overlay group-hover:opacity-100" 
+        />
         <div
-          className="absolute inset-0 opacity-30 transition-transform duration-700 group-hover:scale-110"
+          className="absolute inset-0 opacity-40 transition-transform duration-700 pointer-events-none"
           style={{
-            background: `radial-gradient(circle at 50% 50%, ${product.color}50, transparent 70%)`,
+            background: `radial-gradient(circle at 50% 50%, ${product.color}40, transparent 80%)`,
           }}
         />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span
-            className="text-7xl font-bold opacity-[0.08] text-white select-none"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            {product.name[0]}{product.name[1]}
-          </span>
-        </div>
         {/* Category badge */}
         <div className="absolute top-4 left-4">
           <span className="px-3 py-1 rounded-full bg-[#D4AF37]/20 text-[#D4AF37] text-[10px] font-semibold uppercase tracking-wider backdrop-blur-sm">

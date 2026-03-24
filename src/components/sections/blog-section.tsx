@@ -5,10 +5,17 @@ import { TextReveal } from "@/src/components/animations/text-reveal";
 import { blogPosts } from "@/src/data/blog";
 import { ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export function BlogSection() {
   return (
-    <section className="section-padding bg-white">
+    <section
+      style={{
+        background: "#F8F9F8",
+        paddingTop: "100px",
+        paddingBottom: "100px",
+      }}
+    >
       <div className="container-main">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
@@ -45,14 +52,15 @@ export function BlogSection() {
             <FadeUp key={post.id} delay={0.1 * i}>
               <article className="premium-card group cursor-pointer h-full flex flex-col">
                 {/* Image */}
-                <div className="relative h-52 overflow-hidden bg-gradient-to-br from-[#0F2F2A] to-[#1F7A6E]">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white/10 text-6xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-[#D4AF37] text-[#0A0A0A] text-xs font-semibold uppercase tracking-wider">
+                <div className="relative h-52 overflow-hidden bg-[#0F2F2A]">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 mix-blend-overlay"
+                  />
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1 rounded-full bg-[#D4AF37]/90 text-[#0A0A0A] text-[10px] font-semibold uppercase tracking-wider backdrop-blur-sm">
                       {post.category}
                     </span>
                   </div>

@@ -7,7 +7,13 @@ import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section
+      className="relative overflow-hidden"
+      style={{
+        paddingTop: "100px",
+        paddingBottom: "100px",
+      }}
+    >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0F2F2A] via-[#0A0A0A] to-[#0F2F2A]" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-[120px]" />
