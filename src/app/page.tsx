@@ -1,5 +1,5 @@
 import { Hero } from "@/src/components/hero/hero";
-import AboutUsSection from "@/src/components/ui/about-us-section";
+import { AboutSection } from "@/src/components/sections/about-section";
 import { ProductsSection } from "@/src/components/sections/products-section";
 import { WhyUs } from "@/src/components/sections/why-us";
 import { QualityProcess } from "@/src/components/sections/quality-process";
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <AboutUsSection />
+      <AboutSection />
       <ProductsSection />
       <WhyUs />
       <QualityProcess />

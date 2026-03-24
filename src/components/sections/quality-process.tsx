@@ -1,123 +1,126 @@
 "use client";
 
-import { FadeUp } from "@/src/components/animations/fade-up";
-import { TextReveal } from "@/src/components/animations/text-reveal";
-import { ScrollReveal } from "@/src/components/animations/scroll-reveal";
+import { useRef } from "react";
 import { Sprout, Wind, Cog, FlaskConical, Package, Ship } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 
 const steps = [
-  {
-    icon: Sprout,
-    title: "Farm Sourcing",
-    description: "Direct partnerships with farmers across India's finest spice-growing regions.",
-    step: "01",
-  },
-  {
-    icon: Wind,
-    title: "Cleaning",
-    description: "Multi-stage cleaning process removes impurities and ensures purity standards.",
-    step: "02",
-  },
-  {
-    icon: Cog,
-    title: "Processing",
-    description: "State-of-the-art processing facilities with temperature-controlled environments.",
-    step: "03",
-  },
-  {
-    icon: FlaskConical,
-    title: "Quality Testing",
-    description: "NABL-accredited lab testing for purity, moisture, and microbiological safety.",
-    step: "04",
-  },
-  {
-    icon: Package,
-    title: "Packaging",
-    description: "Food-grade, export-standard packaging with custom branding options.",
-    step: "05",
-  },
-  {
-    icon: Ship,
-    title: "Global Shipping",
-    description: "Reliable logistics network ensuring on-time delivery to ports worldwide.",
-    step: "06",
-  },
+  { icon: Sprout, title: "Farm Sourcing", description: "Direct partnerships with farmers across India's finest spice-growing regions.", step: "01", color: "#4ADE80" },
+  { icon: Wind, title: "Cleaning", description: "Multi-stage cleaning process removes impurities and ensures purity.", step: "02", color: "#60A5FA" },
+  { icon: Cog, title: "Processing", description: "State-of-the-art facilities with temperature-controlled environments.", step: "03", color: "#F59E0B" },
+  { icon: FlaskConical, title: "Quality Testing", description: "NABL-accredited lab testing for purity, moisture, and safety.", step: "04", color: "#A78BFA" },
+  { icon: Package, title: "Packaging", description: "Food-grade, export-standard packaging with custom branding.", step: "05", color: "#F472B6" },
+  { icon: Ship, title: "Global Shipping", description: "Reliable logistics ensuring on-time delivery to ports worldwide.", step: "06", color: "#D4AF37" },
 ];
 
 export function QualityProcess() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+
   return (
-    <section className="section-padding bg-white">
+    <section
+      ref={sectionRef}
+      style={{
+        background: "#FFFFFF",
+        paddingTop: "120px",
+        paddingBottom: "120px",
+      }}
+    >
       <div className="container-main">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <FadeUp>
-            <span className="text-[#D4AF37] text-sm font-medium uppercase tracking-[0.2em]">
-              Our Process
-            </span>
-          </FadeUp>
-          <TextReveal className="mt-4">
-            <h2 className="text-[#0A0A0A]" style={{ fontFamily: "var(--font-heading)" }}>
-              From Farm to{" "}
-              <span className="text-[#1F7A6E]">Global Markets</span>
-            </h2>
-          </TextReveal>
-          <FadeUp delay={0.2}>
-            <div className="gold-line-center mt-6" />
-          </FadeUp>
-          <FadeUp delay={0.3}>
-            <p className="mt-6 text-[#6B7280]">
-              Our rigorous 6-step quality process ensures every shipment meets
-              international food safety and quality standards.
-            </p>
-          </FadeUp>
-        </div>
+        {/* ── Header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{ textAlign: "center", marginBottom: "80px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}
+        >
+          <span style={{ color: "#D4AF37", fontSize: "13px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginBottom: "20px" }}>
+            Our Process
+          </span>
+          <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4vw, 3.2rem)", fontWeight: 700, color: "#0A0A0A", lineHeight: 1.2, margin: 0 }}>
+            From Farm to{" "}
+            <span style={{ color: "#1F7A6E" }}>Global Markets</span>
+          </h2>
+          <div style={{ width: "60px", height: "2px", background: "linear-gradient(90deg, #D4AF37, #e0c55e)", margin: "24px auto 0" }} />
+          <p style={{ color: "#6B7280", fontSize: "15px", lineHeight: 1.75, margin: "20px auto 0" }}>
+            Our rigorous 6-step quality process ensures every shipment meets international food safety and quality standards.
+          </p>
+        </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical Line */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#D4AF37]/30 to-transparent" />
-
-          <div className="space-y-12 lg:space-y-0">
-            {steps.map((step, i) => {
-              const isEven = i % 2 === 0;
-              return (
-                <ScrollReveal
-                  key={step.title}
-                  delay={0.1 * i}
-                  direction={isEven ? "left" : "right"}
+        {/* ── Steps Grid ── */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "32px",
+          }}
+          className="max-lg:!grid-cols-2 max-sm:!grid-cols-1"
+        >
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
+              style={{
+                padding: "36px 32px",
+                borderRadius: "20px",
+                border: "1px solid rgba(10,10,10,0.06)",
+                background: "#F8F9F8",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+                transition: "box-shadow 0.5s, border-color 0.5s",
+              }}
+              className="hover:shadow-[0_16px_48px_rgba(0,0,0,0.06)] hover:!border-[rgba(212,175,55,0.2)]"
+            >
+              {/* Step number + icon row */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
+                <div
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    borderRadius: "16px",
+                    background: "#FFFFFF",
+                    border: "1px solid rgba(10,10,10,0.06)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                  }}
                 >
-                  <div className={`lg:grid lg:grid-cols-2 lg:gap-16 items-center ${i > 0 ? "lg:mt-16" : ""}`}>
-                    {/* Content */}
-                    <div className={`${isEven ? "lg:text-right lg:order-1" : "lg:order-2"}`}>
-                      <div className="mb-4 relative">
-                        <span
-                          className={`absolute -top-6 ${isEven ? "-right-4" : "-left-4"} text-7xl font-bold text-[#0A0A0A]/[0.03] select-none pointer-events-none z-0`}
-                          style={{ fontFamily: "var(--font-heading)" }}
-                        >
-                          {step.step}
-                        </span>
-                        <h3 className="text-[#0A0A0A] font-semibold text-2xl relative z-10">
-                          {step.title}
-                        </h3>
-                      </div>
-                      <p className="text-[#6B7280] text-sm leading-relaxed max-w-md lg:max-w-sm">
-                        {step.description}
-                      </p>
-                    </div>
+                  <step.icon style={{ width: 26, height: 26, color: "#1F7A6E" }} />
+                </div>
+                <span
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "10px",
+                    background: step.color,
+                    color: "#FFFFFF",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: `0 4px 12px ${step.color}40`,
+                  }}
+                >
+                  {step.step}
+                </span>
+              </div>
 
-                    {/* Icon */}
-                    <div className={`hidden lg:flex ${isEven ? "lg:order-2 justify-start" : "lg:order-1 justify-end"} relative`}>
-                      {/* Dot on timeline */}
-                      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.4)]" />
-                      <div className={`w-20 h-20 rounded-2xl bg-[#F8F9F8] border border-[#0A0A0A]/5 flex items-center justify-center ${isEven ? "ml-16" : "mr-16"}`}>
-                        <step.icon className="w-8 h-8 text-[#1F7A6E]" />
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
+              {/* Title */}
+              <h4 style={{ fontSize: "18px", fontWeight: 700, color: "#0A0A0A", margin: "0 0 10px 0", lineHeight: 1.3 }}>
+                {step.title}
+              </h4>
+
+              {/* Description */}
+              <p style={{ fontSize: "14px", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>
+                {step.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

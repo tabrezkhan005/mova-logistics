@@ -1,90 +1,167 @@
 "use client";
 
-import { FadeUp } from "@/src/components/animations/fade-up";
-import { TextReveal } from "@/src/components/animations/text-reveal";
+import { useRef } from "react";
 import { blogPosts } from "@/src/data/blog";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, Calendar } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
 export function BlogSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+
   return (
     <section
+      ref={sectionRef}
       style={{
         background: "#F8F9F8",
-        paddingTop: "100px",
-        paddingBottom: "100px",
+        paddingTop: "120px",
+        paddingBottom: "120px",
       }}
     >
       <div className="container-main">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+        {/* ── Header Row ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            gap: "24px",
+            marginBottom: "56px",
+          }}
+        >
           <div>
-            <FadeUp>
-              <span className="text-[#D4AF37] text-sm font-medium uppercase tracking-[0.2em]">
-                Insights & Updates
-              </span>
-            </FadeUp>
-            <TextReveal className="mt-4">
-              <h2 className="text-[#0A0A0A]" style={{ fontFamily: "var(--font-heading)" }}>
-                Latest from the{" "}
-                <span className="text-[#1F7A6E]">Spice World</span>
-              </h2>
-            </TextReveal>
-            <FadeUp delay={0.2}>
-              <div className="gold-line mt-6" />
-            </FadeUp>
+            <span style={{ color: "#D4AF37", fontSize: "13px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginBottom: "20px" }}>
+              Insights & Updates
+            </span>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4vw, 3.2rem)", fontWeight: 700, color: "#0A0A0A", lineHeight: 1.2, margin: 0 }}>
+              Latest from the{" "}
+              <span style={{ color: "#1F7A6E" }}>Spice World</span>
+            </h2>
+            <div style={{ width: "60px", height: "2px", background: "linear-gradient(90deg, #D4AF37, #e0c55e)", marginTop: "20px" }} />
           </div>
-          <FadeUp delay={0.2}>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-[#1F7A6E] font-medium text-sm uppercase tracking-wider hover:text-[#D4AF37] transition-colors group"
-            >
-              View All Articles
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </FadeUp>
-        </div>
+          <Link
+            href="/blog"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              color: "#1F7A6E",
+              fontSize: "13px",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+            }}
+          >
+            View All Articles <ArrowRight style={{ width: 14, height: 14 }} />
+          </Link>
+        </motion.div>
 
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* ── Blog Grid ── */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "28px",
+          }}
+          className="max-lg:!grid-cols-2 max-sm:!grid-cols-1"
+        >
           {blogPosts.map((post, i) => (
-            <FadeUp key={post.id} delay={0.1 * i}>
-              <article className="premium-card group cursor-pointer h-full flex flex-col">
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden bg-[#0F2F2A]">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 mix-blend-overlay"
-                  />
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3 py-1 rounded-full bg-[#D4AF37]/90 text-[#0A0A0A] text-[10px] font-semibold uppercase tracking-wider backdrop-blur-sm">
-                      {post.category}
-                    </span>
-                  </div>
+            <motion.article
+              key={post.id}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
+              style={{
+                borderRadius: "20px",
+                overflow: "hidden",
+                background: "#FFFFFF",
+                border: "1px solid rgba(10,10,10,0.06)",
+                display: "flex",
+                flexDirection: "column",
+                transition: "box-shadow 0.5s, border-color 0.5s",
+              }}
+              className="group hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:!border-[rgba(212,175,55,0.2)]"
+            >
+              {/* Image */}
+              <div style={{ position: "relative", height: "220px", overflow: "hidden" }}>
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.4) 0%, transparent 50%)" }} />
+
+                {/* Category badge */}
+                <div style={{ position: "absolute", top: "16px", left: "16px" }}>
+                  <span
+                    style={{
+                      padding: "6px 14px",
+                      borderRadius: "100px",
+                      background: "#D4AF37",
+                      color: "#0A0A0A",
+                      fontSize: "10px",
+                      fontWeight: 700,
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                      boxShadow: "0 2px 10px rgba(212,175,55,0.3)",
+                    }}
+                  >
+                    {post.category}
+                  </span>
                 </div>
-                {/* Content */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-3 text-xs text-[#9CA3AF] mb-3">
-                    <Clock className="w-3 h-3" />
+              </div>
+
+              {/* Content */}
+              <div style={{ padding: "24px", flex: 1, display: "flex", flexDirection: "column" }}>
+                {/* Meta */}
+                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "14px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#9CA3AF" }}>
+                    <Clock style={{ width: 12, height: 12 }} />
                     <span>{post.readTime}</span>
-                    <span>•</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#9CA3AF" }}>
+                    <Calendar style={{ width: 12, height: 12 }} />
                     <span>{new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
                   </div>
-                  <h3 className="text-[#0A0A0A] font-semibold text-lg mb-3 group-hover:text-[#1F7A6E] transition-colors leading-snug">
-                    {post.title}
-                  </h3>
-                  <p className="text-[#6B7280] text-sm leading-relaxed flex-1">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-4 text-[#D4AF37] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read More <ArrowRight className="w-3 h-3" />
-                  </div>
                 </div>
-              </article>
-            </FadeUp>
+
+                {/* Title */}
+                <h3 style={{ fontSize: "17px", fontWeight: 700, color: "#0A0A0A", lineHeight: 1.4, margin: "0 0 10px 0" }}>
+                  {post.title}
+                </h3>
+
+                {/* Excerpt */}
+                <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.7, margin: 0, flex: 1 }}>
+                  {post.excerpt}
+                </p>
+
+                {/* Read more */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    marginTop: "20px",
+                    paddingTop: "16px",
+                    borderTop: "1px solid rgba(10,10,10,0.06)",
+                    color: "#D4AF37",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                  }}
+                >
+                  Read More <ArrowRight style={{ width: 13, height: 13 }} />
+                </div>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

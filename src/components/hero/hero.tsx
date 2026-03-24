@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Globe, Award, Ship, Calendar } from "lucide-react";
 import { gsap } from "@/src/lib/gsap";
 import { SpiceCarousel } from "./spice-carousel";
 
@@ -21,6 +21,13 @@ const PARTICLE_DATA = [
   { w: 3, h: 3, l: 5, t: 35, o: 0.32, dy: -130, dx: -10, dur: 10.5, del: 4 },
   { w: 5, h: 5, l: 72, t: 10, o: 0.2, dy: -145, dx: 30, dur: 8, del: 1.2 },
   { w: 2, h: 3, l: 50, t: 75, o: 0.25, dy: -185, dx: -25, dur: 11.5, del: 2.8 },
+];
+
+const HERO_STATS = [
+  { icon: Calendar, value: "15+", label: "Years Experience" },
+  { icon: Globe, value: "40+", label: "Countries Served" },
+  { icon: Ship, value: "500+", label: "Annual Shipments" },
+  { icon: Award, value: "8", label: "Certifications" },
 ];
 
 function FloatingParticles() {
@@ -63,6 +70,7 @@ export function Hero() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const accentRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -109,6 +117,12 @@ export function Hero() {
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
           "-=0.3"
+        )
+        .fromTo(
+          statsRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          "-=0.2"
         );
     }, heroRef);
 
@@ -156,7 +170,7 @@ export function Hero() {
                 className="hidden xl:block"
                 style={{ width: "2px", height: "48px", background: "linear-gradient(to bottom, #D4AF37, rgba(212,175,55,0.1))" }}
               />
-              <div
+              {/* <div
                 className="xl:hidden"
                 style={{ width: "48px", height: "2px", background: "linear-gradient(to right, #D4AF37, rgba(212,175,55,0.1))" }}
               />
@@ -167,12 +181,13 @@ export function Hero() {
                 <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginTop: "6px" }}>
                   Premium Spice Exporters
                 </span>
-              </div>
+              </div> */}
             </div>
 
-            {/* Heading */}
+            {/* Heading with shimmer */}
             <h1
               ref={headingRef}
+              className="hero-heading-shimmer"
               style={{
                 fontFamily: "var(--font-heading)",
                 fontSize: "clamp(2.2rem, 5vw, 4rem)",
@@ -185,9 +200,9 @@ export function Hero() {
               }}
             >
               <span className="word-reveal inline-block">Exporting</span>{" "}
-              <span className="word-reveal inline-block gradient-text">Premium</span>
+              <span className="word-reveal inline-block gradient-text shimmer-text">Premium</span>
               <br />
-              <span className="word-reveal inline-block gradient-text">Indian</span>{" "}
+              <span className="word-reveal inline-block gradient-text shimmer-text">Indian</span>{" "}
               <span className="word-reveal inline-block">Spices</span>{" "}
               <span className="word-reveal inline-block" style={{ color: "rgba(255,255,255,0.55)", fontWeight: 300 }}>
                 to the World
@@ -244,21 +259,29 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Trust Badges */}
+            {/* ─── Stats Strip ─── */}
             <div
-              className="flex flex-wrap items-center justify-center xl:justify-start w-full"
+              ref={statsRef}
+              className="grid grid-cols-2 sm:grid-cols-4 w-full"
               style={{
-                gap: "24px",
+                gap: "16px",
                 marginTop: "56px",
                 paddingTop: "32px",
-                borderTop: "1px solid rgba(255,255,255,0.1)",
+                borderTop: "1px solid rgba(255,255,255,0.08)",
               }}
             >
-              {["ISO 22000 Certified", "HACCP Certified", "FSSAI Approved"].map((badge) => (
-                <div key={badge} className="flex items-center" style={{ gap: "10px" }}>
-                  <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#4ADE80" }} />
-                  <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600 }}>
-                    {badge}
+              {HERO_STATS.map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center xl:items-start gap-2 group">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-300">
+                      <stat.icon className="w-4 h-4 text-[#D4AF37]" />
+                    </div>
+                    <span style={{ color: "#D4AF37", fontSize: "22px", fontWeight: 700, fontFamily: "var(--font-heading)" }}>
+                      {stat.value}
+                    </span>
+                  </div>
+                  <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600 }}>
+                    {stat.label}
                   </span>
                 </div>
               ))}
