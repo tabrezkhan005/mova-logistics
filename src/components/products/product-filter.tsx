@@ -15,19 +15,22 @@ interface ProductFilterProps {
 
 export function ProductFilter({ categories, active, onChange }: ProductFilterProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-3">
+    <div className="flex flex-wrap justify-center gap-4 border-b border-[#0A0A0A]/10 pb-4">
       {categories.map((cat) => (
         <button
           key={cat.id}
           onClick={() => onChange(cat.id)}
           className={cn(
-            "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+            "relative px-4 py-2 text-sm font-semibold tracking-wide uppercase transition-colors duration-300",
             active === cat.id
-              ? "bg-[#0F2F2A] text-white shadow-lg shadow-[#0F2F2A]/20"
-              : "bg-white text-[#6B7280] border border-[#0A0A0A]/10 hover:border-[#D4AF37]/30 hover:text-[#0A0A0A]"
+              ? "text-[#1F7A6E]"
+              : "text-[#6B7280] hover:text-[#0A0A0A]"
           )}
         >
           {cat.label}
+          {active === cat.id && (
+            <span className="absolute bottom-[-17px] left-0 w-full h-[2px] bg-[#D4AF37]" />
+          )}
         </button>
       ))}
     </div>

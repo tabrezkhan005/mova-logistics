@@ -15,8 +15,8 @@ export function ProductGrid() {
       : products.filter((p) => p.category === activeCategory);
 
   return (
-    <div>
-      <FadeUp>
+    <div className="w-full">
+      <FadeUp className="mb-12">
         <ProductFilter
           categories={categories}
           active={activeCategory}
@@ -24,15 +24,15 @@ export function ProductGrid() {
         />
       </FadeUp>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filtered.map((product, i) => (
           <ProductCard key={product.id} product={product} index={i} />
         ))}
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-20">
-          <p className="text-[#6B7280]">No products found in this category.</p>
+        <div className="text-center py-20 bg-white border border-[#0A0A0A]/5 mt-8">
+          <p className="text-[#6B7280] text-sm uppercase tracking-widest font-semibold">No products found in this category.</p>
         </div>
       )}
     </div>
