@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Shield } from "lucide-react";
+import { Shield, CheckCircle } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
 const certifications = [
@@ -17,45 +17,91 @@ const certifications = [
 
 export function Certifications() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.08 });
 
   return (
     <section
       ref={sectionRef}
       style={{
-        background: "linear-gradient(135deg, #0F2F2A 0%, #0A0A0A 100%)",
-        paddingTop: "120px",
-        paddingBottom: "120px",
+        background: "#0A0A0A",
+        paddingTop: "100px",
+        paddingBottom: "100px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Top/bottom separator lines */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent)" }} />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent)" }} />
+      {/* Top rule */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 50%, transparent 100%)",
+        }}
+      />
 
-      {/* Decorative glows */}
-      <div style={{ position: "absolute", top: "15%", right: 0, width: "350px", height: "350px", background: "rgba(212,175,55,0.04)", borderRadius: "50%", filter: "blur(100px)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: "15%", left: 0, width: "280px", height: "280px", background: "rgba(31,122,110,0.05)", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
-
-      <div className="container-main" style={{ position: "relative", zIndex: 1 }}>
+      <div
+        className="container-main"
+        style={{ position: "relative", zIndex: 1 }}
+      >
         {/* ── Header ── */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: "64px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}
+          style={{ marginBottom: "64px" }}
         >
-          <span style={{ color: "#D4AF37", fontSize: "13px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginBottom: "20px" }}>
+          <span
+            style={{
+              color: "#D4AF37",
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              display: "block",
+              marginBottom: "16px",
+            }}
+          >
             Certifications & Compliance
           </span>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4vw, 3.2rem)", fontWeight: 700, color: "#FFFFFF", lineHeight: 1.2, margin: 0 }}>
-            Internationally{" "}
-            <span className="gradient-text">Certified Quality</span>
-          </h2>
-          <div style={{ width: "60px", height: "2px", background: "linear-gradient(90deg, #D4AF37, #e0c55e)", margin: "24px auto 0" }} />
-          <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "15px", lineHeight: 1.75, margin: "20px auto 0" }}>
-            Our products meet the highest international food safety and quality standards.
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              gap: "20px",
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontSize: "clamp(1.9rem, 4vw, 3rem)",
+                fontWeight: 700,
+                color: "#FFFFFF",
+                lineHeight: 1.15,
+                margin: 0,
+              }}
+            >
+              Internationally{" "}
+              <span style={{ color: "#D4AF37" }}>Certified Quality</span>
+            </h2>
+            <div style={{ width: "40px", height: "2px", background: "#D4AF37", flexShrink: 0, marginBottom: "8px" }} />
+          </div>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.38)",
+              fontSize: "16px",
+              lineHeight: 1.8,
+              margin: "20px 0 0 0",
+              maxWidth: "480px",
+            }}
+          >
+            Our products meet the highest international food safety and quality
+            standards, backed by globally recognized certifications.
           </p>
         </motion.div>
 
@@ -64,57 +110,115 @@ export function Certifications() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "20px",
+            gap: "1px",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.05)",
           }}
           className="max-lg:!grid-cols-3 max-md:!grid-cols-2"
         >
           {certifications.map((cert, i) => (
             <motion.div
               key={cert.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 + i * 0.06 }}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.45, delay: 0.1 + i * 0.05 }}
               style={{
-                padding: "32px 24px",
-                borderRadius: "18px",
-                border: "1px solid rgba(255,255,255,0.06)",
-                background: "rgba(255,255,255,0.03)",
-                textAlign: "center",
-                transition: "border-color 0.5s, background 0.5s, transform 0.3s",
-                cursor: "default",
+                padding: "36px 28px",
+                background: "#0A0A0A",
+                transition: "background 0.3s",
+                display: "flex",
+                flexDirection: "column",
+                gap: "0",
               }}
-              className="hover:!bg-[rgba(255,255,255,0.06)] hover:!border-[rgba(212,175,55,0.25)]"
-              whileHover={{ y: -4 }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLElement).style.background = "#111111")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLElement).style.background = "#0A0A0A")
+              }
             >
-              {/* Icon */}
               <div
                 style={{
-                  width: "48px",
-                  height: "48px",
-                  borderRadius: "14px",
-                  background: "rgba(212,175,55,0.08)",
-                  border: "1px solid rgba(212,175,55,0.12)",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 20px",
+                  gap: "10px",
+                  marginBottom: "16px",
                 }}
               >
-                <Shield style={{ width: 22, height: 22, color: "#D4AF37" }} />
+                <CheckCircle
+                  style={{ width: 16, height: 16, color: "#D4AF37", flexShrink: 0 }}
+                />
+                <h4
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 700,
+                    color: "#FFFFFF",
+                    margin: 0,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {cert.name}
+                </h4>
               </div>
 
-              {/* Name */}
-              <h4 style={{ fontSize: "16px", fontWeight: 700, color: "#FFFFFF", margin: "0 0 8px 0", lineHeight: 1.3 }}>
-                {cert.name}
-              </h4>
-
-              {/* Description */}
-              <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", lineHeight: 1.6, margin: 0 }}>
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "rgba(255,255,255,0.3)",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
                 {cert.description}
               </p>
             </motion.div>
           ))}
         </div>
+
+        {/* ── Trust statement ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          style={{
+            marginTop: "48px",
+            padding: "28px 36px",
+            border: "1px solid rgba(212,175,55,0.12)",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "20px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+            <Shield style={{ width: 20, height: 20, color: "#D4AF37", flexShrink: 0 }} />
+            <p
+              style={{
+                fontSize: "14px",
+                color: "rgba(255,255,255,0.45)",
+                margin: 0,
+                lineHeight: 1.6,
+              }}
+            >
+              All certifications are renewed annually and independently audited.
+              Documentation available upon request.
+            </p>
+          </div>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#D4AF37",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              whiteSpace: "nowrap",
+              cursor: "pointer",
+            }}
+          >
+            Request Documents →
+          </span>
+        </motion.div>
       </div>
     </section>
   );

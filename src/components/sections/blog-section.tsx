@@ -9,21 +9,21 @@ import { motion, useInView } from "framer-motion";
 
 export function BlogSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.08 });
 
   return (
     <section
       ref={sectionRef}
       style={{
         background: "#F8F9F8",
-        paddingTop: "120px",
-        paddingBottom: "120px",
+        paddingTop: "100px",
+        paddingBottom: "100px",
       }}
     >
       <div className="container-main">
         {/* ── Header Row ── */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           style={{
@@ -36,14 +36,33 @@ export function BlogSection() {
           }}
         >
           <div>
-            <span style={{ color: "#D4AF37", fontSize: "13px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginBottom: "20px" }}>
+            <span
+              style={{
+                color: "#D4AF37",
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                display: "block",
+                marginBottom: "16px",
+              }}
+            >
               Insights & Updates
             </span>
-            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4vw, 3.2rem)", fontWeight: 700, color: "#0A0A0A", lineHeight: 1.2, margin: 0 }}>
+            <h2
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontSize: "clamp(1.9rem, 4vw, 3rem)",
+                fontWeight: 700,
+                color: "#0A0A0A",
+                lineHeight: 1.15,
+                margin: "0 0 16px 0",
+              }}
+            >
               Latest from the{" "}
               <span style={{ color: "#1F7A6E" }}>Spice World</span>
             </h2>
-            <div style={{ width: "60px", height: "2px", background: "linear-gradient(90deg, #D4AF37, #e0c55e)", marginTop: "20px" }} />
+            <div style={{ width: "40px", height: "2px", background: "#D4AF37" }} />
           </div>
           <Link
             href="/blog"
@@ -51,12 +70,23 @@ export function BlogSection() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              color: "#1F7A6E",
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
+              color: "#0F2F2A",
+              fontSize: "12px",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
               textTransform: "uppercase",
               textDecoration: "none",
+              paddingBottom: "2px",
+              borderBottom: "1px solid #0F2F2A",
+              transition: "color 0.25s, border-color 0.25s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.color = "#D4AF37";
+              (e.currentTarget as HTMLElement).style.borderColor = "#D4AF37";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.color = "#0F2F2A";
+              (e.currentTarget as HTMLElement).style.borderColor = "#0F2F2A";
             }}
           >
             View All Articles <ArrowRight style={{ width: 14, height: 14 }} />
@@ -75,44 +105,64 @@ export function BlogSection() {
           {blogPosts.map((post, i) => (
             <motion.article
               key={post.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
               style={{
-                borderRadius: "20px",
-                overflow: "hidden",
                 background: "#FFFFFF",
-                border: "1px solid rgba(10,10,10,0.06)",
+                border: "1px solid rgba(10,10,10,0.07)",
                 display: "flex",
                 flexDirection: "column",
-                transition: "box-shadow 0.5s, border-color 0.5s",
+                overflow: "hidden",
+                transition: "border-color 0.3s",
               }}
-              className="group hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:!border-[rgba(212,175,55,0.2)]"
+              className="group"
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLElement).style.borderColor =
+                  "rgba(212,175,55,0.3)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLElement).style.borderColor =
+                  "rgba(10,10,10,0.07)")
+              }
             >
               {/* Image */}
-              <div style={{ position: "relative", height: "220px", overflow: "hidden" }}>
+              <div
+                style={{
+                  position: "relative",
+                  height: "220px",
+                  overflow: "hidden",
+                }}
+              >
                 <Image
                   src={post.image}
                   alt={post.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.4) 0%, transparent 50%)" }} />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(10,10,10,0.35) 0%, transparent 50%)",
+                  }}
+                />
 
                 {/* Category badge */}
-                <div style={{ position: "absolute", top: "16px", left: "16px" }}>
+                <div
+                  style={{ position: "absolute", top: "16px", left: "16px" }}
+                >
                   <span
                     style={{
-                      padding: "6px 14px",
-                      borderRadius: "100px",
+                      padding: "4px 12px",
                       background: "#D4AF37",
                       color: "#0A0A0A",
-                      fontSize: "10px",
+                      fontSize: "9px",
                       fontWeight: 700,
-                      letterSpacing: "0.06em",
+                      letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      boxShadow: "0 2px 10px rgba(212,175,55,0.3)",
                     }}
                   >
                     {post.category}
@@ -121,30 +171,83 @@ export function BlogSection() {
               </div>
 
               {/* Content */}
-              <div style={{ padding: "24px", flex: 1, display: "flex", flexDirection: "column" }}>
+              <div
+                style={{
+                  padding: "28px",
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  borderTop: "3px solid transparent",
+                  transition: "border-color 0.3s",
+                }}
+                className="group-hover:!border-[#D4AF37]"
+              >
                 {/* Meta */}
-                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "14px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#9CA3AF" }}>
-                    <Clock style={{ width: 12, height: 12 }} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    marginBottom: "14px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      fontSize: "11px",
+                      color: "#9CA3AF",
+                    }}
+                  >
+                    <Clock style={{ width: 11, height: 11 }} />
                     <span>{post.readTime}</span>
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#9CA3AF" }}>
-                    <Calendar style={{ width: 12, height: 12 }} />
-                    <span>{new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      fontSize: "11px",
+                      color: "#9CA3AF",
+                    }}
+                  >
+                    <Calendar style={{ width: 11, height: 11 }} />
+                    <span>
+                      {new Date(post.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </span>
                   </div>
                 </div>
 
-                {/* Title */}
-                <h3 style={{ fontSize: "17px", fontWeight: 700, color: "#0A0A0A", lineHeight: 1.4, margin: "0 0 10px 0" }}>
+                <h3
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    fontFamily: "var(--font-heading)",
+                    color: "#0A0A0A",
+                    lineHeight: 1.4,
+                    margin: "0 0 10px 0",
+                  }}
+                >
                   {post.title}
                 </h3>
 
-                {/* Excerpt */}
-                <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.7, margin: 0, flex: 1 }}>
+                <p
+                  style={{
+                    fontSize: "13px",
+                    color: "#6B7280",
+                    lineHeight: 1.75,
+                    margin: 0,
+                    flex: 1,
+                  }}
+                >
                   {post.excerpt}
                 </p>
 
-                {/* Read more */}
                 <div
                   style={{
                     display: "flex",
@@ -154,11 +257,13 @@ export function BlogSection() {
                     paddingTop: "16px",
                     borderTop: "1px solid rgba(10,10,10,0.06)",
                     color: "#D4AF37",
-                    fontSize: "13px",
-                    fontWeight: 600,
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
                   }}
                 >
-                  Read More <ArrowRight style={{ width: 13, height: 13 }} />
+                  Read More <ArrowRight style={{ width: 12, height: 12 }} />
                 </div>
               </div>
             </motion.article>

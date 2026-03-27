@@ -61,31 +61,87 @@ const stats = [
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   return (
     <section
       id="about-section"
       ref={sectionRef}
-      className="relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #F8F9F8 0%, #FFFFFF 100%)" }}
+      style={{ background: "#FFFFFF" }}
     >
-      <div className="container-main" style={{ paddingTop: "120px", paddingBottom: "120px" }}>
+      {/* ── Intro Strip ── */}
+      <div
+        style={{
+          borderTop: "1px solid rgba(10,10,10,0.06)",
+          borderBottom: "1px solid rgba(10,10,10,0.06)",
+          background: "#F8F9F8",
+          padding: "20px 0",
+        }}
+      >
+        <div className="container-main">
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "40px",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {["ISO 22000 Certified", "HACCP Certified", "FSSAI Licensed", "Spice Board of India"].map(
+              (badge) => (
+                <div
+                  key={badge}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      background: "#D4AF37",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      color: "#6B7280",
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {badge}
+                  </span>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      </div>
 
+      <div
+        className="container-main"
+        style={{ paddingTop: "100px", paddingBottom: "100px" }}
+      >
         {/* ── Section Header ── */}
         <motion.div
-          className="text-center"
-          style={{ marginBottom: "80px" }}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
+          style={{ marginBottom: "72px" }}
         >
           <span
             style={{
               color: "#D4AF37",
-              fontSize: "13px",
+              fontSize: "11px",
               fontWeight: 600,
-              letterSpacing: "0.2em",
+              letterSpacing: "0.3em",
               textTransform: "uppercase",
               display: "block",
               marginBottom: "20px",
@@ -99,9 +155,9 @@ export function AboutSection() {
               fontSize: "clamp(2rem, 4vw, 3.2rem)",
               fontWeight: 700,
               color: "#0A0A0A",
-              lineHeight: 1.2,
-              margin: "0 auto",
-              maxWidth: "650px",
+              lineHeight: 1.15,
+              margin: "0 0 20px 0",
+              maxWidth: "560px",
             }}
           >
             A Legacy of{" "}
@@ -109,24 +165,23 @@ export function AboutSection() {
           </h2>
           <div
             style={{
-              width: "60px",
+              width: "40px",
               height: "2px",
-              background: "linear-gradient(90deg, #D4AF37, #e0c55e)",
-              margin: "24px auto 0",
+              background: "#D4AF37",
             }}
           />
           <p
             style={{
               color: "#6B7280",
               fontSize: "16px",
-              lineHeight: 1.75,
-              maxWidth: "620px",
-              margin: "24px auto 0",
+              lineHeight: 1.8,
+              maxWidth: "560px",
+              margin: "24px 0 0 0",
             }}
           >
-            Headquartered in Mumbai, we bridge India&apos;s finest farms and businesses
-            worldwide — delivering authentic flavor, rigorous quality, and
-            unbroken trust in every shipment.
+            Headquartered in Mumbai, we bridge India&apos;s finest farms and
+            businesses worldwide — delivering authentic flavor, rigorous quality,
+            and unbroken trust in every shipment.
           </p>
         </motion.div>
 
@@ -135,26 +190,25 @@ export function AboutSection() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr",
-            gap: "60px",
-            alignItems: "center",
+            gap: "72px",
+            alignItems: "start",
           }}
-          className="lg:!grid-cols-2"
+          className="lg:!grid-cols-[480px_1fr]"
         >
           {/* Image Side */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center lg:justify-start"
+            transition={{ duration: 0.8, delay: 0.15 }}
           >
-            <div style={{ position: "relative", maxWidth: "480px", width: "100%" }}>
+            <div style={{ position: "relative" }}>
+              {/* Main image */}
               <div
                 style={{
-                  borderRadius: "24px",
+                  borderRadius: "4px",
                   overflow: "hidden",
-                  position: "relative",
                   aspectRatio: "4/5",
-                  boxShadow: "0 30px 80px rgba(0,0,0,0.12)",
+                  position: "relative",
                 }}
               >
                 <Image
@@ -164,58 +218,56 @@ export function AboutSection() {
                   className="object-cover"
                   priority
                 />
-
-                {/* Gradient overlay */}
                 <div
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background: "linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 50%)",
+                    background:
+                      "linear-gradient(to top, rgba(10,10,10,0.55) 0%, transparent 55%)",
                   }}
                 />
-
-                {/* Button overlay */}
+                {/* Overlay CTA */}
                 <div
                   style={{
                     position: "absolute",
                     bottom: "28px",
-                    left: 0,
-                    right: 0,
-                    display: "flex",
-                    justifyContent: "center",
+                    left: "28px",
+                    right: "28px",
                   }}
                 >
                   <Link
                     href="/products"
                     style={{
-                      background: "#FFFFFF",
-                      color: "#0A0A0A",
-                      padding: "12px 28px",
-                      borderRadius: "100px",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "8px",
+                      padding: "12px 24px",
+                      background: "#D4AF37",
+                      color: "#0A0A0A",
+                      fontSize: "12px",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      borderRadius: "4px",
                       textDecoration: "none",
-                      transition: "all 0.3s",
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
                     }}
                   >
-                    Our Products <ArrowRight style={{ width: 14, height: 14 }} />
+                    Our Products{" "}
+                    <ArrowRight style={{ width: 13, height: 13 }} />
                   </Link>
                 </div>
               </div>
 
-              {/* Decorative border */}
+              {/* Gold accent border */}
               <div
                 style={{
                   position: "absolute",
-                  inset: "-12px",
-                  border: "2px solid rgba(212,175,55,0.15)",
-                  borderRadius: "32px",
+                  top: "16px",
+                  left: "16px",
+                  right: "-16px",
+                  bottom: "-16px",
+                  border: "1px solid rgba(212,175,55,0.18)",
+                  borderRadius: "4px",
                   zIndex: -1,
                   pointerEvents: "none",
                 }}
@@ -223,53 +275,58 @@ export function AboutSection() {
             </div>
           </motion.div>
 
-          {/* Features Grid */}
+          {/* Features */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.25 }}
           >
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
-                gap: "32px",
+                gap: "0",
               }}
               className="max-sm:!grid-cols-1"
             >
               {features.map((feature, i) => (
-                <motion.div
+                <div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "12px",
+                    padding: "32px",
+                    borderBottom: i < features.length - 2 ? "1px solid rgba(10,10,10,0.06)" : "none",
+                    borderRight: i % 2 === 0 ? "1px solid rgba(10,10,10,0.06)" : "none",
+                    transition: "background 0.3s",
                   }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.background = "#F8F9F8")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.background = "transparent")
+                  }
                 >
                   <div
                     style={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "14px",
-                      background: "rgba(212,175,55,0.08)",
-                      border: "1px solid rgba(212,175,55,0.15)",
+                      width: "40px",
+                      height: "40px",
+                      border: "1px solid rgba(212,175,55,0.25)",
+                      borderRadius: "8px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      flexShrink: 0,
+                      marginBottom: "16px",
                     }}
                   >
-                    <feature.icon style={{ width: 22, height: 22, color: "#D4AF37" }} />
+                    <feature.icon
+                      style={{ width: 18, height: 18, color: "#D4AF37" }}
+                    />
                   </div>
                   <h4
                     style={{
-                      fontSize: "16px",
+                      fontSize: "15px",
                       fontWeight: 700,
                       color: "#0A0A0A",
-                      margin: 0,
+                      margin: "0 0 8px 0",
                       lineHeight: 1.3,
                     }}
                   >
@@ -277,15 +334,15 @@ export function AboutSection() {
                   </h4>
                   <p
                     style={{
-                      fontSize: "14px",
+                      fontSize: "13px",
                       color: "#6B7280",
-                      lineHeight: 1.7,
+                      lineHeight: 1.75,
                       margin: 0,
                     }}
                   >
                     {feature.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>
@@ -293,14 +350,15 @@ export function AboutSection() {
 
         {/* ── Stats Row ── */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.6 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
           style={{
             marginTop: "80px",
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "24px",
+            borderTop: "1px solid rgba(10,10,10,0.07)",
+            borderLeft: "1px solid rgba(10,10,10,0.07)",
           }}
           className="max-md:!grid-cols-2"
         >
@@ -308,12 +366,10 @@ export function AboutSection() {
             <div
               key={stat.label}
               style={{
+                padding: "40px 32px",
+                borderRight: "1px solid rgba(10,10,10,0.07)",
+                borderBottom: "1px solid rgba(10,10,10,0.07)",
                 textAlign: "center",
-                padding: "32px 16px",
-                borderRadius: "16px",
-                background: "#FFFFFF",
-                border: "1px solid rgba(10,10,10,0.05)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.04)",
               }}
             >
               <div
@@ -321,7 +377,7 @@ export function AboutSection() {
                   fontSize: "clamp(2rem, 3vw, 2.8rem)",
                   fontWeight: 700,
                   fontFamily: "var(--font-heading)",
-                  color: "#0A0A0A",
+                  color: "#0F2F2A",
                   lineHeight: 1,
                 }}
               >
@@ -329,9 +385,9 @@ export function AboutSection() {
               </div>
               <div
                 style={{
-                  fontSize: "12px",
+                  fontSize: "11px",
                   color: "#9CA3AF",
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   fontWeight: 600,
                   marginTop: "12px",
@@ -345,33 +401,43 @@ export function AboutSection() {
 
         {/* ── CTA Banner ── */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.8 }}
+          transition={{ duration: 0.7, delay: 0.7 }}
           style={{
             marginTop: "80px",
-            borderRadius: "24px",
+            background: "#0F2F2A",
+            borderRadius: "4px",
             overflow: "hidden",
             position: "relative",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "32px",
+            padding: "56px 56px",
           }}
+          className="max-md:!p-10 max-sm:!p-8"
         >
+          {/* Gold top strip */}
           <div
             style={{
-              background: "linear-gradient(135deg, #0F2F2A 0%, #0A0A0A 100%)",
-              padding: "64px 40px",
-              textAlign: "center",
-              position: "relative",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: "2px",
+              background: "#D4AF37",
             }}
-          >
-            {/* Gold top line */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, transparent, #D4AF37, transparent)" }} />
+          />
 
+          <div style={{ flex: "1", minWidth: "280px" }}>
             <span
               style={{
                 color: "#D4AF37",
-                fontSize: "12px",
+                fontSize: "11px",
                 fontWeight: 600,
-                letterSpacing: "0.25em",
+                letterSpacing: "0.3em",
                 textTransform: "uppercase",
                 display: "block",
                 marginBottom: "16px",
@@ -379,71 +445,68 @@ export function AboutSection() {
             >
               Start Your Journey
             </span>
-
             <h3
               style={{
                 fontFamily: "var(--font-heading)",
-                fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+                fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
                 fontWeight: 700,
                 color: "#FFFFFF",
-                margin: "0 auto",
-                maxWidth: "500px",
-                lineHeight: 1.3,
+                margin: 0,
+                lineHeight: 1.25,
               }}
             >
               Ready to Export Premium Spices Globally?
             </h3>
+          </div>
 
-            <p
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "12px",
+              alignItems: "center",
+              flexShrink: 0,
+            }}
+          >
+            <Link
+              href="/contact"
               style={{
-                color: "rgba(255,255,255,0.5)",
-                fontSize: "15px",
-                lineHeight: 1.7,
-                maxWidth: "440px",
-                margin: "16px auto 0",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "14px 28px",
+                background: "#D4AF37",
+                color: "#0A0A0A",
+                fontSize: "12px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                borderRadius: "4px",
+                textDecoration: "none",
               }}
             >
-              Partner with Mova Logistics for uncompromised quality and reliable worldwide delivery.
-            </p>
-
-            <div
+              Get Started <ArrowRight style={{ width: 14, height: 14 }} />
+            </Link>
+            <Link
+              href="/products"
               style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "16px",
-                marginTop: "32px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "14px 28px",
+                background: "transparent",
+                color: "rgba(255,255,255,0.75)",
+                fontSize: "12px",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                borderRadius: "4px",
+                border: "1px solid rgba(255,255,255,0.2)",
+                textDecoration: "none",
               }}
             >
-              <Link href="/contact" className="btn-primary" style={{ borderRadius: "12px" }}>
-                Get Started <ArrowRight style={{ width: 16, height: 16 }} />
-              </Link>
-              <Link href="/products" className="btn-secondary" style={{ borderRadius: "12px" }}>
-                View Products
-              </Link>
-            </div>
-
-            {/* Trust row */}
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "24px",
-                marginTop: "40px",
-                paddingTop: "28px",
-                borderTop: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
-              {["ISO 22000", "HACCP", "FSSAI", "Spice Board"].map((cert) => (
-                <div key={cert} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ADE80" }} />
-                  <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600 }}>
-                    {cert}
-                  </span>
-                </div>
-              ))}
-            </div>
+              View Products
+            </Link>
           </div>
         </motion.div>
       </div>

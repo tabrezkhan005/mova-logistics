@@ -1,9 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
-import { FadeUp } from "@/src/components/animations/fade-up";
-import { TextReveal } from "@/src/components/animations/text-reveal";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { exportRegions, exportStats } from "@/src/data/countries";
 import {
   ComposableMap,
@@ -13,54 +11,127 @@ import {
   Line,
 } from "react-simple-maps";
 
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const geoUrl =
+  "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 export function ExportMap() {
-  const indiaCoords: [number, number] = [78.9629, 20.5937]; // India coordinates
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.08 });
+  const indiaCoords: [number, number] = [78.9629, 20.5937];
 
   return (
-    <section className="section-padding bg-[#0A0A0A] relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#D4AF37] rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#1F7A6E] rounded-full blur-[100px]" />
-      </div>
+    <section
+      ref={sectionRef}
+      style={{
+        background: "#0A0A0A",
+        paddingTop: "100px",
+        paddingBottom: "100px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Top separator */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.2) 50%, transparent 100%)",
+        }}
+      />
 
-      <div className="container-main relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <FadeUp>
-            <span className="text-[#D4AF37] text-sm font-medium uppercase tracking-[0.2em]">
-              Global Presence
-            </span>
-          </FadeUp>
-          <TextReveal className="mt-4">
-            <h2 className="text-white" style={{ fontFamily: "var(--font-heading)" }}>
-              Exporting to{" "}
-              <span className="gradient-text">40+ Countries</span>
-            </h2>
-          </TextReveal>
-          <FadeUp delay={0.2}>
-            <div className="gold-line-center mt-6" />
-          </FadeUp>
-          <FadeUp delay={0.3}>
-            <p className="mt-6 text-white/50">
-              Our spices reach kitchens, restaurants, and food manufacturers
-              across five continents.
-            </p>
-          </FadeUp>
-        </div>
-
-        {/* Map Visualization */}
-        <FadeUp delay={0.2} className="relative w-full aspect-[2/1] min-h-[400px] mb-16 px-4">
-          <ComposableMap
-            projectionConfig={{
-              scale: 140,
-              center: [20, 10], // Adjusting center to properly show India and destinations
+      <div
+        className="container-main"
+        style={{ position: "relative", zIndex: 1 }}
+      >
+        {/* ── Header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: "64px" }}
+        >
+          <span
+            style={{
+              color: "#D4AF37",
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              display: "block",
+              marginBottom: "16px",
             }}
+          >
+            Global Presence
+          </span>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              gap: "20px",
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontSize: "clamp(1.9rem, 4vw, 3rem)",
+                fontWeight: 700,
+                color: "#FFFFFF",
+                lineHeight: 1.15,
+                margin: 0,
+              }}
+            >
+              Exporting to{" "}
+              <span style={{ color: "#D4AF37" }}>40+ Countries</span>
+            </h2>
+            <div
+              style={{
+                width: "40px",
+                height: "2px",
+                background: "#D4AF37",
+                flexShrink: 0,
+                marginBottom: "8px",
+              }}
+            />
+          </div>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.38)",
+              fontSize: "16px",
+              lineHeight: 1.8,
+              margin: "20px 0 0 0",
+              maxWidth: "500px",
+            }}
+          >
+            Our spices reach kitchens, restaurants, and food manufacturers
+            across five continents.
+          </p>
+        </motion.div>
+
+        {/* ── Map ── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "2/1",
+            minHeight: "380px",
+            marginBottom: "64px",
+            border: "1px solid rgba(255,255,255,0.05)",
+          }}
+        >
+          <ComposableMap
+            projectionConfig={{ scale: 140, center: [20, 10] }}
             width={800}
             height={400}
-            className="w-full h-full object-contain drop-shadow-2xl"
+            style={{ width: "100%", height: "100%" }}
           >
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
@@ -68,12 +139,12 @@ export function ExportMap() {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="rgba(255,255,255,0.05)"
-                    stroke="rgba(255,255,255,0.15)"
-                    strokeWidth={0.5}
+                    fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.1)"
+                    strokeWidth={0.4}
                     style={{
                       default: { outline: "none" },
-                      hover: { outline: "none", fill: "rgba(255,255,255,0.1)" },
+                      hover: { outline: "none", fill: "rgba(255,255,255,0.07)" },
                       pressed: { outline: "none" },
                     }}
                   />
@@ -81,82 +152,97 @@ export function ExportMap() {
               }
             </Geographies>
 
-            {/* Arcs from India to regions */}
+            {/* Lines from India */}
             {exportRegions.map((region, idx) => (
               <motion.g
                 key={`line-${region.id}`}
-                initial={{ opacity: 0, pathLength: 0 }}
-                whileInView={{ opacity: 1, pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 + idx * 0.2 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 + idx * 0.15 }}
               >
                 <Line
                   from={indiaCoords}
                   to={region.coordinates}
                   stroke={region.color}
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   strokeLinecap="round"
-                  className="opacity-50"
-                  style={{ strokeDasharray: "4 4" }}
+                  style={{
+                    opacity: 0.45,
+                    strokeDasharray: "3 3",
+                  }}
                 />
               </motion.g>
             ))}
 
-            {/* India Marker */}
+            {/* India source dot */}
             <Marker coordinates={indiaCoords}>
-              <circle r={4} fill="#FFFFFF" className="drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
-              <circle r={10} fill="#FFFFFF" opacity={0.3} className="animate-ping origin-center" />
+              <circle r={5} fill="#FFFFFF" opacity={0.95} />
+              <circle r={12} fill="rgba(255,255,255,0.08)" />
             </Marker>
 
-            {/* Destination Markers */}
+            {/* Destination dots */}
             {exportRegions.map((region, i) => (
               <Marker key={`marker-${region.id}`} coordinates={region.coordinates}>
                 <motion.g
                   initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 1 + i * 0.2, duration: 0.5 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ delay: 0.8 + i * 0.15, duration: 0.4 }}
                 >
-                  {/* Glow ring */}
-                  <circle
-                    r={12}
-                    fill={region.color}
-                    opacity="0.2"
-                    className="glow-marker"
-                  />
-                  {/* Dot */}
-                  <circle
-                    r={5}
-                    fill={region.color}
-                    className="shadow-[0_0_15px_rgba(currentColor,0.6)]"
-                  />
+                  <circle r={10} fill={region.color} opacity={0.1} />
+                  <circle r={4} fill={region.color} opacity={0.9} />
                 </motion.g>
               </Marker>
             ))}
           </ComposableMap>
+        </motion.div>
 
-          {/* HTML Overlay for Tooltips since it's hard inside SVG */}
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-            {/* We will rely on simple HTML text overlay below or keep tooltips integrated in a custom way. To keep things clean, the regions list is below. */}
-          </div>
-        </FadeUp>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* ── Stats row ── */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "1px",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.05)",
+          }}
+          className="max-md:!grid-cols-2"
+        >
           {exportStats.map((stat, i) => (
-            <FadeUp key={stat.label} delay={0.1 * i}>
-              <div className="text-center p-6 rounded-xl border border-white/5 bg-white/[0.02]">
-                <div
-                  className="text-3xl md:text-4xl font-bold gradient-text"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {stat.value}
-                </div>
-                <p className="text-white/40 text-sm mt-2 uppercase tracking-wider">
-                  {stat.label}
-                </p>
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+              style={{
+                padding: "36px 28px",
+                background: "#0A0A0A",
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "clamp(2rem, 3vw, 2.8rem)",
+                  fontWeight: 700,
+                  fontFamily: "var(--font-heading)",
+                  color: "#D4AF37",
+                  lineHeight: 1,
+                }}
+              >
+                {stat.value}
               </div>
-            </FadeUp>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.3)",
+                  fontSize: "11px",
+                  marginTop: "10px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  fontWeight: 600,
+                }}
+              >
+                {stat.label}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>
