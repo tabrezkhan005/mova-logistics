@@ -45,8 +45,8 @@ export const exportRegions: ExportRegion[] = [
 ];
 
 export const exportStats = [
-  { label: "Countries Served", value: "40+" },
-  { label: "Tons Exported Annually", value: "5000+" },
-  { label: "Years of Experience", value: "15+" },
-  { label: "Quality Certifications", value: "8+" },
+  { label: "Countries Served", value: "10+" },
+  { label: "Tons Exported", value: "100+" },
+  { label: "Established", value: "2025" },
+  { label: "Quality Checks", value: "100%" },
 ];

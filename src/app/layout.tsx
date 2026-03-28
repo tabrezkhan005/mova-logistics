@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/src/components/navbar/navbar";
 import { Footer } from "@/src/components/footer/footer";
+import { QuotePopup } from "@/src/components/ui/quote-popup";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -52,6 +53,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <QuotePopup />
       </body>
     </html>
   );

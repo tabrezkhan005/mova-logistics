@@ -18,7 +18,7 @@ const features = [
     icon: Globe,
     title: "Global Reach",
     description:
-      "Exporting to 40+ countries across 5 continents with flawless international logistics.",
+      "Exporting premium spices to growing markets across multiple continents with reliable logistics.",
   },
   {
     icon: Shield,
@@ -40,9 +40,9 @@ const features = [
   },
   {
     icon: Award,
-    title: "15+ Years Legacy",
+    title: "Built on Expertise",
     description:
-      "Over a decade of unbroken trust in the international spice trade.",
+      "Founded by professionals with deep roots in India's spice-growing regions.",
   },
   {
     icon: Truck,
@@ -53,10 +53,10 @@ const features = [
 ];
 
 const stats = [
-  { value: "15+", label: "Years Experience" },
-  { value: "40+", label: "Countries Served" },
-  { value: "500+", label: "Annual Shipments" },
-  { value: "98%", label: "Client Retention" },
+  { value: "2025", label: "Established" },
+  { value: "10+", label: "Countries Served" },
+  { value: "50+", label: "Shipments Completed" },
+  { value: "100%", label: "Quality Commitment" },
 ];
 
 export function AboutSection() {
@@ -160,7 +160,7 @@ export function AboutSection() {
               maxWidth: "560px",
             }}
           >
-            A Legacy of{" "}
+            Your Trusted Partner for{" "}
             <span style={{ color: "#1F7A6E" }}>Premium Spices</span>
           </h2>
           <div
@@ -179,9 +179,9 @@ export function AboutSection() {
               margin: "24px 0 0 0",
             }}
           >
-            Headquartered in Mumbai, we bridge India&apos;s finest farms and
-            businesses worldwide — delivering authentic flavor, rigorous quality,
-            and unbroken trust in every shipment.
+            Based in Guntur, Andhra Pradesh — the heart of India&apos;s spice
+            country — we connect premium Indian farms with businesses worldwide,
+            delivering authentic flavor and rigorous quality in every shipment.
           </p>
         </motion.div>
 

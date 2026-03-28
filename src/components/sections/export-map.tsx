@@ -87,7 +87,7 @@ export function ExportMap() {
               }}
             >
               Exporting to{" "}
-              <span style={{ color: "#D4AF37" }}>40+ Countries</span>
+              <span style={{ color: "#D4AF37" }}>10+ Countries</span>
             </h2>
             <div
               style={{

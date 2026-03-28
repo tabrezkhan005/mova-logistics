@@ -21,6 +21,9 @@ export const siteMetadata = {
     "Indian food exports",
     "FSSAI certified spices",
     "organic spices India",
+    "Guntur spice exporters",
+    "Andhra Pradesh chilli export",
+    "Guntur turmeric exporters",
   ],
 };
 
@@ -63,7 +66,7 @@ export const homeMetadata: Metadata = generatePageMetadata(
 
 export const aboutMetadata: Metadata = generatePageMetadata(
   "About Us",
-  "Learn about Mova Logistics — a trusted Indian spice export company delivering quality spices to 40+ countries worldwide.",
+  "Learn about Mova Logistics — a premier Indian spice export company delivering high-quality spices from Guntur to global markets.",
   "/about"
 );
 

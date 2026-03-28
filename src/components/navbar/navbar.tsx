@@ -58,7 +58,7 @@ export function Navbar() {
               }}
             >
               <a
-                href="tel:+919876543210"
+                href="tel:+917989326385"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -79,7 +79,7 @@ export function Navbar() {
                 }
               >
                 <Phone size={11} style={{ color: "#D4AF37" }} />
-                +91 98765 43210
+                +91 79893 26385
               </a>
               <span
                 style={{

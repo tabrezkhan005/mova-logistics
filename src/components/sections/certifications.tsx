@@ -23,7 +23,7 @@ export function Certifications() {
     <section
       ref={sectionRef}
       style={{
-        background: "#0A0A0A",
+        background: "#F8F9F8",
         paddingTop: "100px",
         paddingBottom: "100px",
         position: "relative",
@@ -39,7 +39,7 @@ export function Certifications() {
           right: 0,
           height: "1px",
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 50%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(10,10,10,0.08) 50%, transparent 100%)",
         }}
       />
 
@@ -81,7 +81,7 @@ export function Certifications() {
                 fontFamily: "var(--font-heading)",
                 fontSize: "clamp(1.9rem, 4vw, 3rem)",
                 fontWeight: 700,
-                color: "#FFFFFF",
+                color: "#0A0A0A",
                 lineHeight: 1.15,
                 margin: 0,
               }}
@@ -93,7 +93,7 @@ export function Certifications() {
           </div>
           <p
             style={{
-              color: "rgba(255,255,255,0.38)",
+              color: "#6B7280",
               fontSize: "16px",
               lineHeight: 1.8,
               margin: "20px 0 0 0",
@@ -111,8 +111,8 @@ export function Certifications() {
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: "1px",
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.05)",
+            background: "rgba(10,10,10,0.06)",
+            border: "1px solid rgba(10,10,10,0.06)",
           }}
           className="max-lg:!grid-cols-3 max-md:!grid-cols-2"
         >
@@ -124,17 +124,17 @@ export function Certifications() {
               transition={{ duration: 0.45, delay: 0.1 + i * 0.05 }}
               style={{
                 padding: "36px 28px",
-                background: "#0A0A0A",
+                background: "#FFFFFF",
                 transition: "background 0.3s",
                 display: "flex",
                 flexDirection: "column",
                 gap: "0",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.background = "#111111")
+                ((e.currentTarget as HTMLElement).style.background = "#F0F1F0")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.background = "#0A0A0A")
+                ((e.currentTarget as HTMLElement).style.background = "#FFFFFF")
               }
             >
               <div
@@ -152,7 +152,7 @@ export function Certifications() {
                   style={{
                     fontSize: "15px",
                     fontWeight: 700,
-                    color: "#FFFFFF",
+                    color: "#0A0A0A",
                     margin: 0,
                     lineHeight: 1.3,
                   }}
@@ -164,7 +164,7 @@ export function Certifications() {
               <p
                 style={{
                   fontSize: "12px",
-                  color: "rgba(255,255,255,0.3)",
+                  color: "#6B7280",
                   lineHeight: 1.7,
                   margin: 0,
                 }}
@@ -183,7 +183,7 @@ export function Certifications() {
           style={{
             marginTop: "48px",
             padding: "28px 36px",
-            border: "1px solid rgba(212,175,55,0.12)",
+            border: "1px solid rgba(10,10,10,0.08)",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
@@ -196,7 +196,7 @@ export function Certifications() {
             <p
               style={{
                 fontSize: "14px",
-                color: "rgba(255,255,255,0.45)",
+                color: "#6B7280",
                 margin: 0,
                 lineHeight: 1.6,
               }}

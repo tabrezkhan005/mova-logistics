@@ -8,10 +8,10 @@ import Image from "next/image";
 import { SpiceCarousel } from "./spice-carousel";
 
 const HERO_STATS = [
-  { icon: Calendar, value: "15+", label: "Years Experience" },
-  { icon: Globe, value: "40+", label: "Countries Served" },
-  { icon: Ship, value: "500+", label: "Annual Shipments" },
-  { icon: Award, value: "8", label: "Certifications" },
+  { icon: Calendar, value: "2025", label: "Established" },
+  { icon: Globe, value: "10+", label: "Countries Served" },
+  { icon: Ship, value: "50+", label: "Shipments" },
+  { icon: Award, value: "4", label: "Certifications" },
 ];
 
 export function Hero() {
@@ -119,8 +119,8 @@ export function Hero() {
             >
               Sourced from India&apos;s finest farmlands, certified to
               international standards, and delivered to{" "}
-              <span style={{ color: "#D4AF37" }}>40+ countries</span> — with
-              unbroken consistency.
+              <span style={{ color: "#D4AF37" }}>growing global markets</span> — with
+              uncompromising quality.
             </p>
 
             {/* CTAs */}
@@ -269,7 +269,7 @@ export function Hero() {
             fontWeight: 600,
           }}
         >
-          Since 2009 — Trusted Worldwide
+          Premium Spice Exports — From India
         </span>
       </div>
     </section>

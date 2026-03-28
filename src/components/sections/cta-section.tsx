@@ -7,7 +7,7 @@ import { motion, useInView } from "framer-motion";
 
 const trustBadges = [
   { icon: ShieldCheck, label: "ISO & HACCP Certified" },
-  { icon: Globe, label: "40+ Countries" },
+  { icon: Globe, label: "Global Reach" },
   { icon: Leaf, label: "Organic Options" },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
 
 const quickLinks = [
@@ -25,80 +25,6 @@ const productLinks = [
 export function Footer() {
   return (
     <footer style={{ background: "#0A0A0A", color: "#FFFFFF" }}>
-      {/* ── Top CTA band ── */}
-      <div
-        style={{
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-          background: "#0F2F2A",
-          padding: "36px 0",
-        }}
-      >
-        <div
-          className="container-main"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "24px",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontSize: "11px",
-                color: "#D4AF37",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                fontWeight: 600,
-                margin: "0 0 6px 0",
-              }}
-            >
-              Ready to start exporting?
-            </p>
-            <p
-              style={{
-                fontSize: "22px",
-                fontFamily: "var(--font-heading)",
-                fontWeight: 700,
-                color: "#FFFFFF",
-                margin: 0,
-                lineHeight: 1.3,
-              }}
-            >
-              Connect with our export team today.
-            </p>
-          </div>
-          <Link
-            href="/contact"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              padding: "14px 28px",
-              background: "#D4AF37",
-              color: "#0A0A0A",
-              fontSize: "12px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              borderRadius: "4px",
-              textDecoration: "none",
-              flexShrink: 0,
-              transition: "background 0.3s",
-            }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLElement).style.background = "#b8961f")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLElement).style.background = "#D4AF37")
-            }
-          >
-            Get a Quote <ArrowRight style={{ width: 14, height: 14 }} />
-          </Link>
-        </div>
-      </div>
 
       {/* ── Main footer body ── */}
       <div
@@ -135,7 +61,7 @@ export function Footer() {
             >
               A trusted Indian spice export company delivering premium quality
               spices to global markets. Connecting India&apos;s finest farms
-              with businesses worldwide since 2009.
+              with businesses worldwide.
             </p>
             <div style={{ display: "flex", gap: "10px" }}>
               {["in", "tw", "ig"].map((social) => (
@@ -296,7 +222,7 @@ export function Footer() {
                     lineHeight: 1.7,
                   }}
                 >
-                  Mumbai, Maharashtra, India
+                  D. No. 3-1-153, Kundula Road, Pattabhipuram, Guntur, Andhra Pradesh 522006
                 </span>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -304,7 +230,7 @@ export function Footer() {
                   style={{ width: 14, height: 14, color: "#D4AF37", flexShrink: 0 }}
                 />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+917989326385"
                   style={{
                     color: "rgba(255,255,255,0.38)",
                     fontSize: "13px",
@@ -319,7 +245,7 @@ export function Footer() {
                       "rgba(255,255,255,0.38)")
                   }
                 >
-                  +91 98765 43210
+                  +91 79893 26385
                 </a>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "12px" }}>
