@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Send, CheckCircle, ChevronDown } from "lucide-react";
 import { products } from "@/src/data/products";
+import { countries } from "@/src/data/countries";
 
 const inquirySchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -15,7 +16,7 @@ const inquirySchema = z.object({
   phone: z.string().min(5, "Phone number is required"),
   email: z.string().email("Valid email is required"),
   productInterested: z.string().min(1, "Please select a product"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string().min(1, "Message is required"),
 });
 
 type InquiryFormData = z.infer<typeof inquirySchema>;
@@ -23,7 +24,9 @@ type InquiryFormData = z.infer<typeof inquirySchema>;
 const fieldStyle: React.CSSProperties = {
   width: "100%",
   padding: "14px 16px",
-  border: "1px solid rgba(10,10,10,0.1)",
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderColor: "rgba(10,10,10,0.1)",
   borderRadius: "2px",
   background: "#F8F9F8",
   color: "#0A0A0A",
@@ -191,13 +194,36 @@ export function ExportInquiryForm() {
                 <label style={labelStyle}>
                   Country <span style={{ color: "#D4AF37" }}>*</span>
                 </label>
-                <input
-                  {...register("country")}
-                  placeholder="Your country"
-                  style={getFocusStyle("country")}
-                  onFocus={() => setFocusedField("country")}
-                  onBlur={() => setFocusedField(null)}
-                />
+                <div style={{ position: "relative" }}>
+                  <select
+                    {...register("country")}
+                    style={{
+                      ...getFocusStyle("country"),
+                      appearance: "none",
+                      cursor: "pointer",
+                      paddingRight: "40px",
+                    }}
+                    onFocus={() => setFocusedField("country")}
+                    onBlur={() => setFocusedField(null)}
+                  >
+                    <option value="">Select country</option>
+                    {countries.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown style={{
+                    position: "absolute",
+                    right: "14px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: 16,
+                    height: 16,
+                    color: "#9CA3AF",
+                    pointerEvents: "none",
+                  }} />
+                </div>
                 {errors.country && <span style={errorStyle}>{errors.country.message}</span>}
               </div>
               <div>

@@ -4,33 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle2, Shield, Globe, Leaf, ChevronDown } from "lucide-react";
 import { products } from "@/src/data/products";
+import { countries } from "@/src/data/countries";
 
-const countries = [
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Australia",
-  "Germany",
-  "France",
-  "Italy",
-  "Spain",
-  "Netherlands",
-  "United Arab Emirates",
-  "Saudi Arabia",
-  "Qatar",
-  "Kuwait",
-  "Singapore",
-  "Malaysia",
-  "Japan",
-  "South Korea",
-  "China",
-  "South Africa",
-  "Kenya",
-  "Nigeria",
-  "Egypt",
-  "Mexico",
-  "Other",
-];
 
 const trustItems = [
   { icon: Shield, label: "ISO & HACCP Certified" },
@@ -44,7 +19,9 @@ const inputBase: React.CSSProperties = {
   width: "100%",
   padding: "13px 16px",
   background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(255,255,255,0.1)",
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderColor: "rgba(255,255,255,0.1)",
   borderRadius: "3px",
   color: "#FFFFFF",
   fontSize: "14px",
@@ -78,9 +55,11 @@ export function QuotePopup() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
+    // Only show if not already dismissed in this session
     const hasDismissed = sessionStorage.getItem("mova_quote_dismissed");
 
     if (!hasDismissed) {
+      // 15s delay is more professional for real users
       const timer = setTimeout(() => {
         setIsOpen(true);
       }, 15000);
