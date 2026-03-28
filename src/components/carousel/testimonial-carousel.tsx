@@ -7,7 +7,7 @@ import { Quote } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "Mova Logistics has been our trusted spice supplier for 5 years. Their turmeric quality is consistently excellent, and their logistics are always on time.",
+      "Mova Logistics has quickly become our most reliable spice partner. Their turmeric quality is consistently excellent, and their logistics are always on time.",
     name: "James Mitchell",
     company: "Mitchell Foods, USA",
     role: "Head of Procurement",

@@ -45,7 +45,7 @@ const stats = [
   { number: "100%", label: "Lab Tested", icon: FlaskConical },
   { number: "8+", label: "Certifications", icon: Award },
   { number: "99.7%", label: "Purity Rate", icon: Target },
-  { number: "40+", label: "Countries Served", icon: Globe },
+  { number: "10+", label: "Countries Served", icon: Globe },
 ];
 
 export default function QualityPage() {
@@ -404,7 +404,7 @@ export default function QualityPage() {
                 }}>
                   Our commitment to quality isn&apos;t just a promise — it&apos;s a measurable standard
                   backed by independent audits, lab reports, and certifications that are recognized
-                  in over 40 countries.
+                  globally in over 10 countries.
                 </p>
               </FadeUp>
               <FadeUp delay={0.25}>

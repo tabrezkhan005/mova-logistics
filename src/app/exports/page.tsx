@@ -92,7 +92,7 @@ export default function ExportsPage() {
               maxWidth: "720px",
             }}>
               Delivering Spices to{" "}
-              <span style={{ color: "#D4AF37" }}>40+ Countries</span>
+              <span style={{ color: "#D4AF37" }}>Global Markets</span>
             </h1>
           </FadeUp>
           <FadeUp delay={0.2}>
@@ -423,8 +423,8 @@ export default function ExportsPage() {
                     flexWrap: "wrap",
                   }}>
                     {[
-                      { val: "5000+", lbl: "Tons/Year" },
-                      { val: "15+", lbl: "Years" },
+                      { val: "50+", lbl: "Shipments" },
+                      { val: "2025", lbl: "Established" },
                       { val: "100%", lbl: "Lab Tested" },
                     ].map((s) => (
                       <div key={s.lbl}>
